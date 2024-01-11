@@ -14,8 +14,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def transcribe(audio):
-    model = whisper.load_model("whisper-1")
-    result = model.transcribe(audio)
+    #model = whisper.load_model("whisper-1")
+    result =  openai.Audio.transcribe("whisper-1", audio_file) #model.transcribe(audio)
     # with open("text_files/transcription.txt", 'w') as f:
     #    f.write(result["text"])
     return result
