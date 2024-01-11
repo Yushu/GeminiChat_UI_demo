@@ -6,15 +6,15 @@ import whisper
 # import dotenv
 import streamlit as st
 
-# from audio_recorder_streamlit import audio_recorder
+from audio_recorder_streamlit import audio_recorder
 
 # import API key from .env file
 # dotenv.load_dotenv()
-# openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def transcribe(audio):
-    model = whisper.load_model("small")
+    model = whisper.load_model("whisper-1")
     result = model.transcribe(audio)
     # with open("text_files/transcription.txt", 'w') as f:
     #    f.write(result["text"])
@@ -59,11 +59,11 @@ def main():
     tab1, tab2 = st.tabs(["Record Audio", "Upload Audio"])
 
     # Record Audio tab
-    #with tab1:
-       # audio_bytes = audio_recorder()
-       # if audio_bytes:
-       #     st.audio(audio_bytes, format="audio/wav")
-       #     save_audio_file(audio_bytes, "mp3")
+    with tab1:
+        audio_bytes = audio_recorder()
+        if audio_bytes:
+            st.audio(audio_bytes, format="audio/wav")
+            save_audio_file(audio_bytes, "mp3")
 
     # Upload Audio tab
     with tab2:
